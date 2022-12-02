@@ -1,0 +1,39 @@
+@import 'normalize.css';
+@import 'variables.css';
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-app-background);
+  min-height: 100vh;
+  width: 100%;
+}
+
+.ant-spin-nested-loading {
+  overflow-y: scroll;
+  height: 400px;
+}
