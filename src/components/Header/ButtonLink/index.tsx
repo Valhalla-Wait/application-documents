@@ -1,16 +1,24 @@
 import styled from 'styled-components'
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useState } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
 
 type PropsType = {
   link: string
   children: React.ReactNode
 }
 
+type PropsLinkType = {
+  currentLink: string
+  propsLink: string
+}
+
 export const ButtonLink:React.FC<PropsType> = ({children, link}) => {
+
+  const {pathname} = useLocation()
+
   return (
-    <NavLink to={link} >
-      <Wrapper>
+    <NavLink to={link}>
+      <Wrapper currentLink={pathname} propsLink={link}>
         <Button>
           <li className='item_link'>{children}</li>
         </Button>
@@ -20,6 +28,9 @@ export const ButtonLink:React.FC<PropsType> = ({children, link}) => {
 }
 
 const Wrapper = styled.div`
+  ${({currentLink, propsLink}:PropsLinkType) => 
+    currentLink === propsLink ? `background-color: var(--color-menu-item-active);` : undefined
+  }
   &:hover {
     transition: 500ms;
     background-color: var(--color-menu-item-active);

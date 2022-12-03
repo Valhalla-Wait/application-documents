@@ -37,3 +37,7 @@ code {
   overflow-y: scroll;
   height: 400px;
 }
+
+.ant-alert {
+  margin-bottom: 10px;
+}

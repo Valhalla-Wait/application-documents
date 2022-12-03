@@ -1,9 +1,6 @@
 :root {
   /* COLORS */
-  --color-error-default: #ff0b37;
   --color-app-background: rgb(220, 245, 240);
-  --color-success-default: #3dd598;
-  --color-warning-default: #ffb800;
   --color-menu-item-active: #0062ff;
   --color-form-background: #4e78bb;
 }
