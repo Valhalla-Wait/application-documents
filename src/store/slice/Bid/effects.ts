@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import { FormDataType, ResponseType } from "./types";
+import axios, { AxiosError } from "axios";
+import { FormDataType, ResponseType, ServerErrResponse } from "./types";
 
 export const createBid = createAsyncThunk(
   'bid/createBid',
@@ -12,7 +12,7 @@ export const createBid = createAsyncThunk(
       })
       return response.data.message;
     } catch (e) {
-      return rejectWithValue((e as Error).message);
+      return rejectWithValue((e as AxiosError<ServerErrResponse>).response?.data.message);
     }
   },
 );

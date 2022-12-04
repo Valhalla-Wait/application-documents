@@ -1,5 +1,5 @@
 export type ReducerType = {
-  message: ServerMessages | null
+  message: string
   status: 'success' | 'loading' | 'fail' | null
   error: string
 }
@@ -10,11 +10,9 @@ export type FormDataType = {
 }
 
 export type ResponseType = {
-  message: ServerMessages
+  message: string
 }
 
-export enum ServerMessages {
-  success = 'Заявка создана',
-  bidErr = 'Вы уже заявляли',
-  serverErr = 'Server error',
+export type ServerErrResponse = {
+  message: string
 }

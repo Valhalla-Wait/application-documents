@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import React, { useState } from 'react'
+import React from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 
 type PropsType = {

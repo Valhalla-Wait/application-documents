@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import styled from 'styled-components'
-import { Form, Input, Select, Button, Alert } from 'antd';
-import { BidActions, BidEffects, BidSelectors, BidTypes, useAppDispatch, useAppSelector, UsersEffects, UsersSelectors } from 'store';
+import { Form, Input, Select, Button } from 'antd';
+import { BidActions, BidEffects, BidTypes, useAppDispatch, useAppSelector, UsersEffects, UsersSelectors } from 'store';
+import { AlertMessage } from './AlertMessage';
 const {Option} = Select
 
 export const FormApplication = () => {
@@ -9,16 +10,11 @@ export const FormApplication = () => {
   const dispatch = useAppDispatch()
   
   const users = useAppSelector(UsersSelectors.UsersDataSelector)
-  const serverMessage = useAppSelector(BidSelectors.BidDataSelector)
-
-  const [showMess, setShowMess] = useState<boolean>(false)
 
   useEffect(() => {
-    if (serverMessage) setShowMess(true) 
     dispatch(UsersEffects.getUsers())
-
     return () => {
-      dispatch(BidActions.removeMessageAction())
+      dispatch(BidActions.removeServerMessagesAction())
     }
   }, [])
 
@@ -26,21 +22,9 @@ export const FormApplication = () => {
     dispatch(BidEffects.createBid(data))
   }
 
-  const messageType = () => {
-    switch (serverMessage) {
-      case BidTypes.ServerMessages.success:
-        return 'success'
-      case BidTypes.ServerMessages.bidErr:
-        return 'warning'
-      case BidTypes.ServerMessages.serverErr:
-      return 'error'
-    }
-  }
-
   return (
    <Wrapper>
-    {serverMessage && <Alert message={serverMessage} type={messageType()} showIcon/>
-    }
+    <AlertMessage />
     <Form
       name="create_bid"
       onFinish={formHandler}
