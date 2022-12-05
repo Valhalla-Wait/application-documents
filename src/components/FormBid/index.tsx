@@ -11,6 +11,8 @@ export const FormApplication = () => {
   
   const users = useAppSelector(UsersSelectors.UsersDataSelector)
 
+  const isFetching = useAppSelector(UsersSelectors.UsersStatusSelector)
+
   useEffect(() => {
     dispatch(UsersEffects.getUsers())
     return () => {
@@ -37,6 +39,7 @@ export const FormApplication = () => {
         <Select
           placeholder="Выберите конструктора"
           allowClear
+          loading={isFetching === 'loading'}
         >
           {users.map(u => 
               <Option key={u.id} value={u.id}>{u.firstname} {u.middlename} {u.surname}</Option>

@@ -9,6 +9,9 @@ export const ListApplications = () => {
   const dispatch = useAppDispatch()
 
   const documents = useAppSelector(DocumentsSelectors.DocumentsDataSelector)
+
+  const isFetching = useAppSelector(DocumentsSelectors.DocumentsStatusSelector)
+
   useEffect(()=>{
     dispatch(DocumentsEffects.getDocuments())
   }, [])
@@ -19,6 +22,7 @@ export const ListApplications = () => {
         <List
           header={<HeaderList />}
           dataSource={documents}
+          loading={isFetching === 'loading'}
           renderItem={(doc) => (
             <List.Item key={doc.id}>
               <div className='list_item title'>{doc.title}</div>
